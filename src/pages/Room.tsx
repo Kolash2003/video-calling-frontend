@@ -1,11 +1,12 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SocketContext } from "../context/SocketContext";
+import UserFeedPlayer from "../components/UserFeedPlayer";
 
 const Room: React.FC = () => {
 
     const { id } = useParams();
-    const { socket, user } = useContext(SocketContext);
+    const { socket, user, stream } = useContext(SocketContext);
 
     useEffect(() => {
         // emitting this event so that either creator of room or other users can join the room
@@ -28,6 +29,7 @@ const Room: React.FC = () => {
         <div>
             <h1>
                 Room: {id}
+                <UserFeedPlayer stream={stream} />
             </h1>
         </div>
     )
